@@ -20,7 +20,7 @@
             border-collapse: collapse;
             margin-top: 20px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -34,7 +34,7 @@
             color: white;
         }
         tr:nth-child(even) {
-            background-color: #FFFAFA;
+            background-color: #f2f2f2;
         }
         tr:hover {
             background-color: #e1f5e1;
@@ -74,6 +74,27 @@
             border: 1px solid #ddd;
             margin-left: 10px;
         }
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .whatsapp-btn img {
+            width: 60px;
+            height: auto;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
     </style>
     <script>
         function filterDoctors() {
@@ -107,15 +128,18 @@
             <option value="Consultant Radiologist">Consultant Radiologist</option>
             <option value="Colorectal Surgeon">Colorectal Surgeon</option>
             <option value="Dermatology">Dermatology</option>
+            <option value="Emergency and Trauma Physician">Emergency and Trauma Physician</option>
+            <option value="Endocrinology">Endocrinology</option>
         </select>
     </div>
+
     <table>
         <thead>
             <tr>
                 <th>Nama</th>
                 <th>Spesialisasi</th>
                 <th>Foto</th>
-                <th>Daftar</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -301,8 +325,30 @@
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/DERMATOLOGY-DATO-DR-NOOR-ZALMY-AZIZAN-1000x1274.png" alt="Foto Dato’ Dr Noor Zalmy Azizan" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr%20Noor%20Zalmy%20Azizan." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
+            <tr data-specialization="Emergency and Trauma Physician">
+                <td>Dr Mohamed Al-Hadi Bin Mohamed Razhi</td>
+                <td>Dokter Consultant Emergency and Trauma Physician</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/EMERGENCY-AND-TRAUMA-MEDICINE-DR-MOHAMED-AL-HADI-BIN-MOHAMED-RAZHI-1000x1274.png" alt="Foto Dr Mohamed Al-Hadi Bin Mohamed Razhi" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Mohamed%20Al-Hadi%20Bin%20Mohamed%20Razhi." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Endocrinology">
+                <td>Dr Suehazlyn Zainudin</td>
+                <td>Dokter Consultant Endocrinologist & Physician</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/ENDOCRINOLOGY-DR-SUEHAZLYN-ZAINUDIN-1000x1274.png" alt="Foto Dr Suehazlyn Zainudin" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Suehazlyn%20Zainudin." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Endocrinology">
+                <td>Dr Swarupini Ponnampalam</td>
+                <td>Dokter Consultant Endocrinologist & Physician</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/ENDOCRINOLOGY-DR-SWARUPINI-PONNAMPALAM-1000x1274.png" alt="Foto Dr Swarupini Ponnampalam" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Swarupini%20Ponnampalam." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
         </tbody>
     </table>
     <p><center>Jika butuh bantuan maka bisa tekan <a href="https://wa.me/6285362142428?text=Hallo%20Sunshia." class="btn-whatsapp">Hubungi kami.</a></center></p>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/6285362142428" class="whatsapp-btn" target="_blank">
+        <img src="https://www.freeiconspng.com/uploads/logo-whatsapp-png-pic-0.png" alt="Logo Whatsapp PNG Pic">
+    </a>
 </body>
 </html>
