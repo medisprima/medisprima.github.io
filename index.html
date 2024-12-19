@@ -12,7 +12,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         table, th, td {
             border: 1px solid #ccc;
@@ -41,10 +41,46 @@
         .btn-whatsapp:hover {
             background-color: #1da851;
         }
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-container label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .filter-container select {
+            padding: 5px;
+            font-size: 14px;
+        }
     </style>
+    <script>
+        function filterDoctors() {
+            const specialization = document.getElementById('specialization').value;
+            const rows = document.querySelectorAll('table tbody tr');
+
+            rows.forEach(row => {
+                const spec = row.dataset.specialization;
+                row.style.display = (specialization === 'all' || spec === specialization) ? '' : 'none';
+            });
+        }
+    </script>
 </head>
 <body>
     <h1>Daftar Dokter Thomson Hospital Kuala Lumpur</h1>
+
+    <div class="filter-container">
+        <label for="specialization">Pilih Spesialisasi:</label>
+        <select id="specialization" onchange="filterDoctors()">
+            <option value="all">Semua Spesialisasi</option>
+            <option value="mata">Dokter Mata</option>
+            <option value="bedah-anak">Dokter Bedah Anak</option>
+            <option value="kandungan">Dokter Kandungan</option>
+            <option value="jantung">Dokter Bedah Jantung</option>
+            <option value="kulit">Dokter Kulit</option>
+            <option value="anaesthesiology">Dokter Anaesthesiology</option>
+        </select>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -55,35 +91,47 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-specialization="mata">
                 <td>Dr. Sunder Ramasamy</td>
                 <td>Dokter Mata - Subspesialis Mata Anak dan Bedah Mata</td>
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/10/PAEDIATRICS-OPHTHALMOLOGY-DR-SUNDER-RAMASAMY-1000x1274.png" alt="Foto Dr. Sunder Ramasamy" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Sunder%20Ramasamy." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
-            <tr>
+            <tr data-specialization="bedah-anak">
                 <td>Dr. Ramprasad Aradada</td>
                 <td>Dokter Bedah Anak</td>
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/PAEDIATRICS-SURGERY-DR-RAMPRASAD-ARADADA-1000x1274.png" alt="Foto Dr. Ramprasad Aradada" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Ramprasad%20Aradada." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
-            <tr>
+            <tr data-specialization="kandungan">
                 <td>Dr. Nurhazinat Yunus</td>
                 <td>Dokter Kandungan - Subspesialis Fertilitas</td>
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/FERTILITY-SPECIALIST-DR-NURHAZINAT-YUNUS-1000x1274.png" alt="Foto Dr. Nurhazinat Yunus" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Nurhazinat%20Yunus." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
-            <tr>
+            <tr data-specialization="jantung">
                 <td>Dato' Dr. Mohd Hamzah Kamarulzaman</td>
                 <td>Dokter Bedah Jantung</td>
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOTHORACIC-SURGERY-DATO-DR-MOHD-HAMZAH-KAMARULZAMAN-1000x1274.png" alt="Foto Dato' Dr. Mohd Hamzah Kamarulzaman" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr.%20Mohd%20Hamzah%20Kamarulzaman." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
-            <tr>
+            <tr data-specialization="kulit">
                 <td>Dato' Dr. Noor Zalmy Azizan</td>
                 <td>Dokter Kulit</td>
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/DERMATOLOGY-DATO-DR-NOOR-ZALMY-AZIZAN-1000x1274.png" alt="Foto Dato' Dr. Noor Zalmy Azizan" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr.%20Noor%20Zalmy%20Azizan." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="anaesthesiology">
+                <td>Dr Albert Navin Durairatnam</td>
+                <td>Dokter Anaesthesiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/ANAESTHESIOLOGY-DR-NAVIN-DURAIRATNAM-1000x1219.png" alt="Foto Dr. Albert Navin Durairatnam" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Albert%20Navin%20Durairatnam." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="anaesthesiology">
+                <td>Dr Foo Sze Yuen</td>
+                <td>Dokter Anaesthesiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/03/ANAESTHESIOLOGY-DR-FOO-SZE-YUEN-1000x1274.png" alt="Foto Dr. Foo Sze Yuen" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Foo%20Sze%20Yuen." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
         </tbody>
     </table>
