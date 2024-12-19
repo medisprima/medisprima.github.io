@@ -8,49 +8,71 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
         }
         table, th, td {
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
         }
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #f4f4f4;
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #FFFAFA;
+        }
+        tr:hover {
+            background-color: #e1f5e1;
         }
         .photo {
             width: 100px;
             height: auto;
+            border-radius: 50%;
+            border: 2px solid #ddd;
         }
         .btn-whatsapp {
             background-color: #25D366;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             text-decoration: none;
             font-size: 14px;
             border-radius: 5px;
             display: inline-block;
+            transition: background-color 0.3s;
         }
         .btn-whatsapp:hover {
-            background-color: #1da851;
+            background-color: #128C7E;
         }
         .filter-container {
             margin-bottom: 20px;
+            text-align: center;
         }
         .filter-container label {
             font-weight: bold;
             margin-right: 10px;
         }
         .filter-container select {
-            padding: 5px;
+            padding: 10px;
             font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
         }
     </style>
     <script>
@@ -72,56 +94,31 @@
         <label for="specialization">Pilih Spesialisasi:</label>
         <select id="specialization" onchange="filterDoctors()">
             <option value="all">Semua Spesialisasi</option>
-            <option value="anaesthesiology">Dokter Anaesthesiology</option>
-            <option value="Anatomical Pathologist">Dokter Anatomical Pathologist</option>
-            <option value="bedah-anak">Dokter Bedah Anak</option>
-            <option value="jantung">Dokter Bedah Jantung</option>
-            <option value="kulit">Dokter Kulit</option>
-            <option value="kandungan">Dokter Kandungan</option>
-            <option value="mata">Dokter Mata</option>
+            <option value="anaesthesiology">Anaesthesiology</option>
+            <option value="Anatomical Pathologist">Anatomical Pathologist</option>
+            <option value="General, Breast & Endocrine Surgeon">General, Breast & Endocrine Surgeon</option>
+            <option value="Breast & Oncoplastic Surgery">Breast & Oncoplastic Surgery</option>
+            <option value="Cardiologist & Electrophysiologist">Cardiologist & Electrophysiologist</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Cardiothoracic Surgery">Cardiothoracic Surgery</option>
+            <option value="Chemical Pathologist">Chemical Pathologist</option>
+            <option value="Clinical Geneticist">Clinical Geneticist</option>
+            <option value="Clinical Haematologist">Clinical Haematologist</option>
+            <option value="Consultant Radiologist">Consultant Radiologist</option>
+            <option value="Colorectal Surgeon">Colorectal Surgeon</option>
+            <option value="Dermatology">Dermatology</option>
         </select>
     </div>
-
     <table>
         <thead>
             <tr>
                 <th>Nama</th>
                 <th>Spesialisasi</th>
                 <th>Foto</th>
-                <th>Aksi</th>
+                <th>Daftar</th>
             </tr>
         </thead>
         <tbody>
-            <tr data-specialization="mata">
-                <td>Dr. Sunder Ramasamy</td>
-                <td>Dokter Mata - Subspesialis Mata Anak dan Bedah Mata</td>
-                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/10/PAEDIATRICS-OPHTHALMOLOGY-DR-SUNDER-RAMASAMY-1000x1274.png" alt="Foto Dr. Sunder Ramasamy" class="photo"></center></td>
-                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Sunder%20Ramasamy." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
-            </tr>
-            <tr data-specialization="bedah-anak">
-                <td>Dr. Ramprasad Aradada</td>
-                <td>Dokter Bedah Anak</td>
-                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/PAEDIATRICS-SURGERY-DR-RAMPRASAD-ARADADA-1000x1274.png" alt="Foto Dr. Ramprasad Aradada" class="photo"></center></td>
-                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Ramprasad%20Aradada." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
-            </tr>
-            <tr data-specialization="kandungan">
-                <td>Dr. Nurhazinat Yunus</td>
-                <td>Dokter Kandungan - Subspesialis Fertilitas</td>
-                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/FERTILITY-SPECIALIST-DR-NURHAZINAT-YUNUS-1000x1274.png" alt="Foto Dr. Nurhazinat Yunus" class="photo"></center></td>
-                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Nurhazinat%20Yunus." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
-            </tr>
-            <tr data-specialization="jantung">
-                <td>Dato' Dr. Mohd Hamzah Kamarulzaman</td>
-                <td>Dokter Bedah Jantung</td>
-                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOTHORACIC-SURGERY-DATO-DR-MOHD-HAMZAH-KAMARULZAMAN-1000x1274.png" alt="Foto Dato' Dr. Mohd Hamzah Kamarulzaman" class="photo"></center></td>
-                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr.%20Mohd%20Hamzah%20Kamarulzaman." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
-            </tr>
-            <tr data-specialization="kulit">
-                <td>Dato' Dr. Noor Zalmy Azizan</td>
-                <td>Dokter Kulit</td>
-                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/DERMATOLOGY-DATO-DR-NOOR-ZALMY-AZIZAN-1000x1274.png" alt="Foto Dato' Dr. Noor Zalmy Azizan" class="photo"></center></td>
-                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr.%20Noor%20Zalmy%20Azizan." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
-            </tr>
             <tr data-specialization="anaesthesiology">
                 <td>Dr Albert Navin Durairatnam</td>
                 <td>Dokter Anaesthesiology</td>
@@ -178,7 +175,134 @@
                 <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/Dr-Maalini-Krishnasamy-photo.png" alt="Foto Dr Maalini Krishnasamy" class="photo"></center></td>
                 <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Maalini%20Krishnasamy." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
             </tr>
+            <tr data-specialization="General, Breast & Endocrine Surgeon">
+                <td>Dr Zamzuri Zakaria</td>
+                <td>Dokter General, Breast & Endocrine Surgeon</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/BREAST-ENDOCRINE-SURGERY-DR-ZAMZURI-ZAKARIA-1000x1274.png" alt="Foto Dr Zamzuri Zakaria" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Zamzuri%20Zakaria." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Breast & Oncoplastic Surgery">
+                <td>Dr Tan Gie Hooi</td>
+                <td>Dokter Breast & Oncoplastic Surgery</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/BREAST-ONCOPLASTIC-SURGERY-DR-TAN-GIE-HOOI-1000x1274.png" alt="Foto Dr Tan Gie Hooi" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Tan%20Gie%20Hooi." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiologist & Electrophysiologist">
+                <td>Dr Gary Lee Chin Keong</td>
+                <td>Dokter Cardiologist & Electrophysiologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2022/11/CARDIOLOGY-DR-GARY-LEE-CHIN-KEONG-1000x1274.png" alt="Foto Dr Gary Lee Chin Keong" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Tan%20Gie%20Hooi." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiology">
+                <td>Dr Hafisyatul Aiza Binti Zainal Abidin</td>
+                <td>Dokter Cardiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOLOGY-DR-HAFISYATUL-AIZA-BINTI-ZAINAL-ABIDIN-1000x1274.png" alt="Foto Dr Hafisyatul Aiza Binti Zainal Abidin" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Hafisyatul%20Aiza%20Binti%20Zainal%20Abidin." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiology">
+                <td>Dr Lau Gin Choy</td>
+                <td>Dokter Cardiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOLOGY-DR-LAU-GIN-CHOY-1000x1274.png" alt="Foto Dr Lau Gin Choy" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Lau%20Gin%20Choy." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiology">
+                <td>Dr Haizal Haron Kamar</td>
+                <td>Dokter Cardiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOLOGY-DR-HAIZAL-HARON-KAMAR-1000x1274.png" alt="Foto Dr Haizal Haron Kamar" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Haizal%20Haron%20Kamar." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiology">
+                <td>Dr Gary Lee Chin Keong</td>
+                <td>Dokter Cardiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2022/11/CARDIOLOGY-DR-GARY-LEE-CHIN-KEONG-1000x1274.png" alt="Foto Dr Gary Lee Chin Keong" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr.%20Gary%20Lee%20Chin%20Keong." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiothoracic Surgery">
+                <td>Dato’ Dr Mohd Hamzah Kamarulzaman</td>
+                <td>Dokter Cardiothoracic Surgery</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOTHORACIC-SURGERY-DATO-DR-MOHD-HAMZAH-KAMARULZAMAN-1000x1274.png" alt="Foto Dato’ Dr Mohd Hamzah Kamarulzaman" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr%20Mohd%20Hamzah%20Kamarulzaman." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Cardiothoracic Surgery">
+                <td>Dr Taufiq Abdullah</td>
+                <td>Dokter Cardiothoracic Surgery</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CARDIOTHORACIC-SURGERY-DR-TAUFIQ-ABDULLAH-1000x1274.png" alt="Foto Dr Taufiq Abdullah" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Taufiq%20Abdullah." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Chemical Pathologist">
+                <td>Dr Hanisah Abdul Hamid</td>
+                <td>Dokter Chemical Pathologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CHEMICAL-PATHOLOGY-DR-HANISAH-ABDUL-HAMID-1000x1274.png" alt="Foto Dr Hanisah Abdul Hamid" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Hanisah%20Abdul%20Hamid." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Clinical Geneticist">
+                <td>Dr Muzhirah Aisha Binti Md Haniffa</td>
+                <td>Dokter General Paediatrics & Clinical Genetics</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/07/Dr-Muzhirah-Aisha-Binti-Md-Haniffa-e1721200786831-1000x1190.png" alt="Foto Dr Muzhirah Aisha Binti Md Haniffa" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Muzhirah%20Aisha%20Binti%20Md%20Haniffa." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Clinical Haematologist">
+                <td>Dr Veena Selvaratnam</td>
+                <td>Dokter Clinical Haematologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CLINICAL-HAEMATOLOGY-DR-VEENA-SELVARATNAM-1000x1274.png" alt="Foto Dr Veena Selvaratnam" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Veena%20Selvaratnam." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Consultant Radiologist">
+                <td>Dr Mohd Redzuan Bin Ismail</td>
+                <td>Dokter Consultant Radiologist & Interventional Radiology</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CLINICAL-RADIOLOGY-DR-MOHD-REDZUAN-BIN-ISMAIL-1000x1274.png" alt="Foto Dr Mohd Redzuan Bin Ismail" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Mohd%20Redzuan%20Bin%20Ismail." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Consultant Radiologist">
+                <td>Dr Shivanesan Strimari Rajamanikan</td>
+                <td>Dokter Consultant Radiologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/09/Dr-Shivanesan-A_L-Strimari-Rajamanikan-e1726507993127-1000x1168.png" alt="Foto Dr Shivanesan Strimari Rajamanikan" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Shivanesan%20Strimari%20Rajamanikan." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Consultant Radiologist">
+                <td>Dr Vanita Paramajothy</td>
+                <td>Dokter Consultant Radiologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CLINICAL-RADIOLOGY-DR-VANITA-PARAMAJOTHY-1000x1274.png" alt="Foto Dr Vanita Paramajothy" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Vanita%20Paramajothy." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Consultant Radiologist">
+                <td>Dr Maninderpal Kaur Ranbir Singh</td>
+                <td>Dokter Consultant Radiologist (Breast Imaging)</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/03/CLINICAL-RADIOLOGY-DR-MANINDERPAL-KAUR-RANBIR-SINGH-1000x1274.png" alt="Foto Dr Maninderpal Kaur Ranbir Singh" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Maninderpal%20Kaur%20Ranbir%20Singh." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Consultant Radiologist">
+                <td>Dr Sivakumaran Karupayah</td>
+                <td>Dokter Consultant Radiologist & Interventional Radiologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/CLINICAL-RADIOLOGY-DR-SIVAKUMARAN-KARUPAYAH-1000x1274.png" alt="Foto Dr Sivakumaran Karupayah" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Sivakumaran%20Karupayah." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Colorectal Surgeon">
+                <td>Dr Wong Sze Ming</td>
+                <td>Dokter Consultant General & Colorectal Surgeon</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/COLORECTAL-SURGERY-DR-WONG-SZE-MING-1000x1274.png" alt="Foto Dr Wong Sze Ming" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Wong%20Sze%20Ming." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Dermatology">
+                <td>Dr Tan Leng Leng</td>
+                <td>Dokter Consultant Dermatologist & Physician</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/DR-TAN-LENG-LENG.png" alt="Foto Dr Tan Leng Leng" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Tan%20Leng%20Leng." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Dermatology">
+                <td>Dr Gangaram Hemandas Belani</td>
+                <td>Dokter Consultant Dermatologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2023/11/DERMATOLOGY-DR-GANGARAM-HEMANDAS-1000x1274.png" alt="Foto Dr Gangaram Hemandas Belani" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dr%20Gangaram%20Hemandas%20Belani." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
+            <tr data-specialization="Dermatology">
+                <td>Dato’ Dr Noor Zalmy Azizan</td>
+                <td>Dokter Consultant Dermatologist</td>
+                <td><center><img src="https://www.thomsonhospitals.com/wp-content/uploads/2024/04/DERMATOLOGY-DATO-DR-NOOR-ZALMY-AZIZAN-1000x1274.png" alt="Foto Dato’ Dr Noor Zalmy Azizan" class="photo"></center></td>
+                <td><a href="https://wa.me/6285362142428?text=Hallo%20Sunshia,%20saya%20ingin%20melakukan%20appointment%20dengan%20Dato'%20Dr%20Noor%20Zalmy%20Azizan." class="btn-whatsapp">Hubungi via WhatsApp</a></td>
+            </tr>
         </tbody>
     </table>
+    <p><center>Jika butuh bantuan maka bisa tekan <a href="https://wa.me/6285362142428?text=Hallo%20Sunshia." class="btn-whatsapp">Hubungi kami.</a></center></p>
 </body>
 </html>
