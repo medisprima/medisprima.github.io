@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Store</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Container */
+    .container {
+      padding: 20px;
+    }
+
+    /* Product Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Product Card */
+    .product {
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      border-radius: 12px;
+      box-shadow: 4px 4px 8px #d1d1d1, -4px -4px 8px #ffffff;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 6px 6px 12px #d1d1d1, -6px -6px 12px #ffffff;
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .price {
+      color: #28a745;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .discount {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #ff4757;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 4px 4px 8px #d1d1d1, -4px -4px 8px #ffffff;
+    }
+
+    .cart-summary h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #0d6efd;
+    }
+
+    /* Buttons */
+    button {
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0b5ed7;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      background-color: #343a40;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    Final Project - Online Store
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Products Grid -->
+    <div id="products" class="products"></div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+      <h2>Keranjang Belanja</h2>
+      <p>Total Barang: <span id="total-items">0</span></p>
+      <p>Total Harga: Rp <span id="total-price">0</span></p>
+      <button onclick="checkout()">Checkout via WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Final Project - <a href="#">All Rights Reserved</a>
+  </footer>
+
+  <script>
+    const apiUrl = "https://677fad620476123f76a78b82.mockapi.io/finalproject/nandez";
+    const whatsappNumber = "+6285361562071";
+    let cart = {};
+
+    // Fetch products from API
+    async function fetchProducts() {
+      const response = await fetch(apiUrl);
+      const products = await response.json();
+      displayProducts(products);
+    }
+
+    // Display products
+    function displayProducts(products) {
+      const productContainer = document.getElementById("products");
+      products.forEach(product => {
+        const discountValue = parseInt(product.diskon.replace("%", ""));
+        const discountedPrice = Math.floor(product.harga - (product.harga * discountValue / 100));
+
+        const productElement = document.createElement("div");
+        productElement.classList.add("product");
+        productElement.innerHTML = `
+          <div class="discount">${product.diskon}</div>
+          <img src="${product.gambar}" alt="${product.nama}">
+          <h3>${product.nama}</h3>
+          <p>
+            <span class="price">Rp ${discountedPrice.toLocaleString()}</span>
+            <span class="original-price">Rp ${parseInt(product.harga).toLocaleString()}</span>
+          </p>
+          <label for="quantity-${product.id}">Jumlah: </label>
+          <input type="number" id="quantity-${product.id}" min="0" value="0" onchange="updateCart('${product.id}', '${product.nama}', ${discountedPrice}, this.value)">
+        `;
+        productContainer.appendChild(productElement);
+      });
+    }
+
+    // Update cart
+    function updateCart(productId, productName, productPrice, quantity) {
+      quantity = parseInt(quantity);
+      if (quantity > 0) {
+        cart[productId] = { name: productName, price: productPrice, quantity };
+      } else {
+        delete cart[productId];
+      }
+      updateCartSummary();
+    }
+
+    // Update cart summary
+    function updateCartSummary() {
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      document.getElementById("total-items").textContent = totalItems;
+      document.getElementById("total-price").textContent = totalPrice.toLocaleString();
+    }
+
+    // Checkout
+    function checkout() {
+      if (Object.keys(cart).length === 0) {
+        alert("Keranjang belanja kosong!");
+        return;
+      }
+
+      const message = Object.values(cart).map(item =>
+        `- ${item.name} x${item.quantity} = Rp ${(item.price * item.quantity).toLocaleString()}`
+      ).join("\n");
+
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      const finalMessage = `Halo, saya ingin memesan:\n\n` +
+        `${message}\n\n` +
+        `Total Barang: ${totalItems}\n` +
+        `Total Harga: Rp ${totalPrice.toLocaleString()}\n\n` +
+        `Mohon konfirmasi pesanan saya. Terima kasih!`;
+
+      const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+      window.open(whatsappLink, "_blank");
+    }
+
+    // Load products on page load
+    fetchProducts();
+  </script>
+</body>
+</html>
